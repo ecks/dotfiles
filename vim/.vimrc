@@ -139,6 +139,9 @@ set tags=./tags;/
 map <Leader>uh :help unimpaired<CR>
 
 " open file buffer
+call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher_ignore_globs'])
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+      \ [ '.tox/', '*.pyc', 'external/'])
 map <Leader>f :Denite file_rec<CR>
 
 " enable 256 colors in vim
