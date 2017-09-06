@@ -81,8 +81,8 @@ alias v='nvim'
 bindkey -v
 
 # tmux
-#alias tmux='tmux -2' # enable 256 colors
-alias t='tmux'
+alias tmux='tmux -2' # enable 256 colors
+#alias t='tmux'
 alias tn='tmux new -s' # create target session by name
 alias ta='tmux attach'
 alias tat='tmux attach -t' # tmux attach to target session

@@ -48,10 +48,7 @@ set shiftwidth=2 " when using << or >> how many spaces will be shifted over
 set tabstop=2       " number of visual spaces per TAB
 set softtabstop=2 " number of spaces in tab when editing
 
-set cursorline
 filetype indent on
-
-syntax on
 
 " Searching
 set incsearch " search as characters are entered
@@ -85,6 +82,7 @@ call dein#add('Shougo/dein.vim')
 " Add or remove your plugins here:
 "dein 'tpope/vim-fugitive' " integrate vim with git
 call dein#add('flazz/vim-colorschemes') " different colorschemes
+call dein#add('dracula/vim')
 
 " original repos on github
 call dein#add('tpope/vim-unimpaired') " makes switching between tabs easier
@@ -101,7 +99,8 @@ call dein#add('honza/vim-snippets') " database of snippets for vim-snipmate
 " fills up hdd
 " call dein#add 'ludovicchabant/vim-gutentags' " manages ctags files
 
-call dein#add('bling/vim-airline') " statusline
+call dein#add('vim-airline/vim-airline') " statusline
+call dein#add('vim-airline/vim-airline-themes')
 
 call dein#add('sjl/gundo.vim') " visualize your vim undo tree
 call dein#add('Shougo/deoplete.nvim')
@@ -123,7 +122,9 @@ endif
 
 "End dein Scripts-------------------------
 
+" Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='term'
 
 " Tagbar
 map <Leader>tb :TagbarToggle<CR>
@@ -138,13 +139,19 @@ set tags=./tags;/
 " look up docs for unimpaired
 map <Leader>uh :help unimpaired<CR>
 
-" open file buffer
+" Denite
 map <Leader>f :Denite file_rec<CR>
+map <Leader>b :Denite buffer<CR>
 
 " enable 256 colors in vim
 set t_Co=256
 syntax on
-colorscheme candycode
+color dracula
+
+" CursorLine
+hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
+nnoremap <Leader>H :set cursorline! cursorcolumn!<CR>
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
