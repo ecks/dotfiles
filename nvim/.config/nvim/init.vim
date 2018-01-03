@@ -71,10 +71,10 @@ endif
 
 
 " Required:
-set runtimepath+=~/.config/vim/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('~/.config/vim')
+call dein#begin('~/.config/nvim')
 
 " " Required:
 call dein#add('Shougo/dein.vim')
