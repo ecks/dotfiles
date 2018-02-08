@@ -25,10 +25,10 @@ antigen bundle tmuxinator
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle autojump
 
-antigen theme ecks/minimal minimal-path-host
+antigen theme dracula/zsh dracula
 antigen apply
 
-export ZSH_THEME="minimal-path-host"
+export ZSH_THEME="dracula"
 
 # set term correctly
 case "$TERM" in
@@ -39,6 +39,8 @@ case "$TERM" in
   screen)
     TERM=screen-256color
     ;;
+  xterm-termite)
+    TERM=xterm
 
 #  *)
 #    TERM=rxvt-unicode
