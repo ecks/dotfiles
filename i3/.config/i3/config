@@ -25,43 +25,60 @@ font pango:Hack 8
 
 floating_modifier $mod
 
-bindsym $mod+Shift+q kill
+# q
+bindcode $mod+Shift+53 kill
 
 bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+d exec rofi -show run 
+#bindsym $mod+d exec rofi -show run 
+# d
+bindcode $mod+43 exec dmenu_run
 
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+# h
+bindcode $mod+44 focus left
+# j
+bindcode $mod+54 focus down
+# k
+bindcode $mod+55 focus up
+# l
+bindcode $mod+33 focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# h
+bindcode $mod+Shift+44 move left
+# j
+bindcode $mod+Shift+54 move down
+# k
+bindcode $mod+Shift+55 move up
+# l
+bindcode $mod+Shift+33 move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
-bindsym $mod+v split v
-
-bindsym $mod+f fullscreen
-
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bar
+bindcode $mod+51 split h
+# minus
+bindcode $mod+48 split v
+# f
+bindcode $mod+29 fullscreen
+# s
+bindcode $mod+47 layout stacking
+# w
+bindcode $mod+59 layout tabbed
+# e
+bindcode $mod+40 layout toggle split
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+a focus parent
-#bindsym $mod+d focus child
+# a
+bindcode $mod+38 focus parent
+# o 
+bindcode $mod+39 focus child
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -107,12 +124,12 @@ assign [class="Thunar"] $ws6
 assign [Title="ranger"] $ws6
 
 
-bindsym $mod+b exec firefox
-bindsym $mod+c exec terminator -T weechat -x weechat
-bindsym $mod+m exec thunderbird
-bindsym $mod+Shift+m exec spotify
-bindsym $mod+Shift+f exec terminator -T ranger -x ranger
-bindsym $mod+Control+l exec sh ~/.config/i3/i3lock.sh
+#bindsym $mod+b exec firefox
+#bindsym $mod+c exec terminator -T weechat -x weechat
+#bindsym $mod+m exec thunderbird
+#bindsym $mod+Shift+m exec spotify
+#bindsym $mod+Shift+f exec terminator -T ranger -x ranger
+#bindsym $mod+Control+l exec sh ~/.config/i3/i3lock.sh
 
 
 
@@ -129,7 +146,7 @@ exec --no-startup-id yabar
 # finds out, if available)
 bar {
     font pango:Hack, FontAwesome 10
-    status_command    i3status
+    status_command    ~/.config/i3status/scripts/i3script.sh
     position          top
     workspace_buttons yes
     strip_workspace_numbers yes
@@ -154,9 +171,11 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [instance="float"] floating enable
 
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# i
+bindcode $mod+Shift+42 reload
+# r
+bindcode $mod+Shift+32 restart
+bindcode $mod+Shift+40 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'" # e
 
 mode "resize" {
         bindsym j resize shrink width 10 px or 10 ppt
@@ -173,7 +192,8 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+# r
+bindcode $mod+32 mode "resize"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -191,8 +211,13 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 
-bindsym $mod+shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+#bindsym $mod+shift+minus move scratchpad
+#bindsym $mod+minus scratchpad show
 
-exec_always feh --bg-scale /usr/share/archstrike-i3-config/wallpapers/archstrike_wallpaper.jpg
+exec_always feh --bg-scale ~/Pictures/Wallpaper/brazil.jpg
 exec_always compton -b
+
+# setxkbmap
+exec "setxkbmap -model hhkb -layout us,dvorak"
+# k
+bindcode $mod+Control+55 exec "xkblayout-state set +1"
