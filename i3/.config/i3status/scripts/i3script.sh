@@ -13,5 +13,6 @@ do
         else
             st="[{ \"full_text\": \"$KB\", \"color\":\"#C60101\" }," # red
         fi
+        # http://tldp.org/LDP/abs/html/string-manipulation.html -- Substring Replacement
         echo "${line/[/$st}" || exit 1
 done

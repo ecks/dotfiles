@@ -26,59 +26,59 @@ font pango:Hack 8
 floating_modifier $mod
 
 # q
-bindcode $mod+Shift+53 kill
+bindcode $mod+Shift+q kill
 
 bindsym $mod+Return exec i3-sensible-terminal
 #bindsym $mod+d exec rofi -show run 
 # d
-bindcode $mod+43 exec dmenu_run
+bindcode $mod+d exec dmenu_run
 
 # h
-bindcode $mod+44 focus left
+bindcode $mod+h focus left
 # j
-bindcode $mod+54 focus down
+bindcode $mod+j focus down
 # k
-bindcode $mod+55 focus up
+bindcode $mod+k focus up
 # l
-bindcode $mod+33 focus right
+bindcode $mod+l focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # h
-bindcode $mod+Shift+44 move left
+bindcode $mod+Shift+h move left
 # j
-bindcode $mod+Shift+54 move down
+bindcode $mod+Shift+j move down
 # k
-bindcode $mod+Shift+55 move up
+bindcode $mod+Shift+k move up
 # l
-bindcode $mod+Shift+33 move right
+bindcode $mod+Shift+l move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # bar
-bindcode $mod+51 split h
+bindcode $mod+bar split h
 # minus
-bindcode $mod+48 split v
+bindcode $mod+minus split v
 # f
-bindcode $mod+29 fullscreen
+bindcode $mod+f fullscreen
 # s
-bindcode $mod+47 layout stacking
+bindcode $mod+s layout stacking
 # w
-bindcode $mod+59 layout tabbed
+bindcode $mod+w layout tabbed
 # e
-bindcode $mod+40 layout toggle split
+bindcode $mod+e layout toggle split
 
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
 
 # a
-bindcode $mod+38 focus parent
+bindcode $mod+a focus parent
 # o 
-bindcode $mod+39 focus child
+bindcode $mod+o focus child
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -172,9 +172,9 @@ for_window [window_role="task_dialog"] floating enable
 for_window [instance="float"] floating enable
 
 # i
-bindcode $mod+Shift+42 reload
+bindcode $mod+Shift+i reload
 # r
-bindcode $mod+Shift+32 restart
+bindcode $mod+Shift+r restart
 bindcode $mod+Shift+40 exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'" # e
 
 mode "resize" {
@@ -193,7 +193,7 @@ mode "resize" {
 }
 
 # r
-bindcode $mod+32 mode "resize"
+bindcode $mod+r mode "resize"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -220,4 +220,4 @@ exec_always compton -b
 # setxkbmap
 exec "setxkbmap -model hhkb -layout us,dvorak"
 # k
-bindcode $mod+Control+55 exec "xkblayout-state set +1"
+bindcode $mod+Control+k exec "xkblayout-state set +1"
