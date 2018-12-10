@@ -11,12 +11,12 @@ do
   esac
 done
 
-if [ ! -d ~/.config/nvim/repos/github.com/Shougo/dein.vim ];
+if [ ! -d ~/.config/nvim/pack/minpac/opt/minpac ];
 then
-  mkdir -p ~/.config/nvim/repos/github.com/Shougo/
-  git clone https://github.com/Shougo/dein.vim.git ~/.config/nvim/repos/github.com/Shougo/dein.vim
+  mkdir -p ~/.config/nvim/pack/minpac/opt
+  git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 elif [ $force = true ];
 then
-  rm -r ~/.config/nvim/repos/github.com/Shougo/dein.vim
-  git clone https://github.com/Shougo/dein.vim.git ~/.config/nvim/repos/github.com/Shougo/dein.vim
+  rm -r ~/.config/nvim/pack/minpac/opt/minpac
+  git clone https://github.com/k-takata/minpac.git ~/.config/nvim/pack/minpac/opt/minpac
 fi
