@@ -1,3 +1,13 @@
+let s:plugins = filereadable(expand("~/.config/nvim/pack/minpac/opt/minpac/autoload/minpac/impl.vim", 1))
+
+if !s:plugins
+  fun! InstallPlugin() " bootstrap plugin
+    silent call mkdir(expand("~/.config/nvim/pack/minpac/opt", 1), 'p')
+    exe '!git clone git clone https://github.com/k-takata/minpac.git '.expand("~/.config/nvim/pack/minpac/opt/minpac", 1)
+  endfun
+else
+endif
+
 packadd minpac
 call minpac#init()
 call minpac#add('tpope/vim-unimpaired') " makes switching between tabs easier
