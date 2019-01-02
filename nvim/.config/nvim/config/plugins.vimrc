@@ -3,7 +3,7 @@ let s:plugins = filereadable(expand("~/.config/nvim/pack/minpac/opt/minpac/autol
 if !s:plugins
   fun! InstallPlugin() " bootstrap plugin
     silent call mkdir(expand("~/.config/nvim/pack/minpac/opt", 1), 'p')
-    exe '!git clone git clone https://github.com/k-takata/minpac.git '.expand("~/.config/nvim/pack/minpac/opt/minpac", 1)
+    exe '!git clone https://github.com/k-takata/minpac.git '.expand("~/.config/nvim/pack/minpac/opt/minpac", 1)
   endfun
 else
 endif
@@ -59,13 +59,13 @@ set tags=./tags;/
 map <Leader>uh :help unimpaired<CR>
 
 " Denite
-map <Leader>f :Denite file/rec<CR>
-map <Leader>b :Denite buffer<CR>
+"map <Leader>f :Denite file/rec<CR>
+"map <Leader>b :Denite buffer<CR>
 
 " filter file buffer
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command',
-	     \ ['git', 'ls-files', '-co', '--exclude-standard'])
+"call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+"call denite#custom#var('file/rec/git', 'command',
+"	     \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
 color dracula
 

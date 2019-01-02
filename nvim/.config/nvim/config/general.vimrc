@@ -11,9 +11,9 @@ set showmode
 
 " indentation -- http://vim.wikia.com/wiki/Indenting_source_code
 set expandtab " turns tabs into spaces
-set shiftwidth=2 " when using << or >> how many spaces will be shifted over
-set tabstop=2       " number of visual spaces per TAB
-set softtabstop=2 " number of spaces in tab when editing
+set shiftwidth=4 " when using << or >> how many spaces will be shifted over
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4 " number of spaces in tab when editing
 
 filetype indent on
 

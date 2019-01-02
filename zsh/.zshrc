@@ -2,18 +2,20 @@
 
 if [ -f ~/.hosts ];
 then
-  source ~/.hosts
+  . ~/.hosts
 fi
 
 if [ -f ~/.alias ];
 then
-  source ~/.alias
+  . ~/.alias
 fi
 
 if [ -f ~/.functions ];
 then
-  source ~/.functions
+  . ~/.functions
 fi
+
+source ~/circadence/functions
 
 source ~/antigen/antigen.zsh
 
@@ -21,7 +23,6 @@ antigen use oh-my-zsh
 
 antigen bundle git
 antigen bundle tmux
-antigen bundle tmuxinator
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle autojump
 
@@ -104,4 +105,5 @@ zstyle ':completion:*' menu select
 
 #PROMPT='%1~ %m%# '
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin" # Add RVM to PATH for scripting
+export GOPATH="/home/hasenov/go" # Add GOPATH

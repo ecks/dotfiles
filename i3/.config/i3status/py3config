@@ -18,9 +18,9 @@ general {
 	#color_bad = "#ab0300"
 }
 
-order += "apt_updates"
+order += "arch_updates"
 order += "touchpad"
-order += "keyboard_layout"
+order += "keyboard_layout_t470"
 order += "xrandr"
 order += "bluetooth"
 order += "disk /"
@@ -39,16 +39,18 @@ touchpad {
   color_off = "#ff0000"
 }
 
-keyboard_layout {
-  format = " {layout}"
+keyboard_layout_t470 {
+  format = " {variant}"
   layout = ["us", "dvorak"]
   color_us = "#0038ff"
   color_dv = "#00ff1e"
 }
 
 xrandr {
-  HDMI-2_pos = "right-of eDP-1"
-  DP-2-1_pos = "right-of eDP-1"
+  DP2-1_rotate = "right"
+  DP2-1_pos = "right-of eDP1"
+  DP2-2_pos = "right-of DP2-1"
+  DP2-2_mode = "1920x1080"
 }
 
 bluetooth {
