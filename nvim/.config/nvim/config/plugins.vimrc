@@ -22,7 +22,15 @@ call minpac#add('vim-airline/vim-airline') " statusline
 call minpac#add('vim-airline/vim-airline-themes')
 
 call minpac#add('sjl/gundo.vim') " visualize your vim undo tree
+call minpac#add('junegunn/fzf') " fuzzy finding
 
+call minpac#add('tpope/vim-dispatch')
+call minpac#add('radenling/vim-dispatch-neovim')
+call minpac#add('neomake/neomake')
+
+call minpac#add('neoclide/coc.nvim', {'do': {-> coc#util#install()}})
+"call minpac#add('tommcdo/vim-lion')
+"call minpac#add('welle/targets.vim')
 " load all packages
 packload
 
@@ -42,7 +50,6 @@ packload
 "call dein#add('Shougo/deoplete.nvim')
 "call dein#add('zchee/deoplete-jedi')
 "
-"call dein#add('neomake/neomake')
 
 
 " Tagbar
@@ -58,8 +65,8 @@ set tags=./tags;/
 " look up docs for unimpaired
 map <Leader>uh :help unimpaired<CR>
 
-" Denite
-"map <Leader>f :Denite file/rec<CR>
+" FZF
+map <Leader>f :FZF<CR>
 "map <Leader>b :Denite buffer<CR>
 
 " filter file buffer
@@ -69,9 +76,21 @@ map <Leader>uh :help unimpaired<CR>
 
 color dracula
 
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
+" dispatch -- parameter to rust's cargo build system
+let g:cargo_makeprg_params = 'build'
 
 " Neomake linter
 "autocmd! BufWritePost * Neomake
-" let g:neomake_python_enabled_makers = ['flake8']
+call neomake#configure#automake('w')
+let g:neomake_python_enabled_makers = ['flake8']
+
+let g:c_syntax_for_h=1
+let g:neomake_c_enabled_makers=['gcc']
+let g:neomake_gcc_args=[
+    \ '-fsyntax-only',
+    \ '-std=gnu11',
+    \ '-Wall',
+    \ '-Wextra',
+    \ '-fopenmp',
+    \ '-I.'
+    \ ]
