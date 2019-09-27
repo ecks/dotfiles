@@ -9,12 +9,32 @@ set $teal #00a7ab
 set $red #ab0300
 set $green #53ab00
 
-set $ws1  "  "
-set $ws2  "  "
-set $ws3  "  "
-set $ws4  "  "
-set $ws5  "  "
-set $ws6  "  "
+# from https://github.com/saschagrunert/dotfiles/blob/master/i3/config
+# colors
+set $bg         #282a36
+set $selection  #44475a
+set $fg         #f8f8f2
+set $comment    #6272a4
+set $cyan       #8be9fd
+set $green      #50fa7b
+set $orange     #ffb86c
+set $pink       #ff79c6
+set $purple     #bd93f9
+set $red        #ff5555
+set $yellow     #f1fa8c
+
+#set $ws1  "  "
+set $ws1 1:shell
+#set $ws2  "  "
+set $ws2 2:web
+#set $ws3  "  "
+set $ws3 3:chat
+#set $ws4  "  "
+set $ws4 4:email
+#set $ws5  "  "
+set $ws5 5:music
+#set $ws6  "  "
+set $ws6 6:files
 set $ws7  " "
 set $ws8  " "
 set $ws9  " "
@@ -82,12 +102,18 @@ bindcode $mod+40 layout toggle split
 bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
 
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
+#bindsym $mod+1 workspace $ws1
+#bindsym $mod+2 workspace $ws2
+#bindsym $mod+3 workspace $ws3
+#bindsym $mod+4 workspace $ws4
+#bindsym $mod+5 workspace $ws5
+#bindsym $mod+6 workspace $ws6
+bindsym $mod+1 exec ~/scripts/i3-mon-swap.py $ws1
+bindsym $mod+2 exec ~/scripts/i3-mon-swap.py $ws2
+bindsym $mod+3 exec ~/scripts/i3-mon-swap.py $ws3
+bindsym $mod+4 exec ~/scripts/i3-mon-swap.py $ws4
+bindsym $mod+5 exec ~/scripts/i3-mon-swap.py $ws5
+bindsym $mod+6 exec ~/scripts/i3-mon-swap.py $ws6
 #bindsym $mod+7 workspace $ws7
 #bindsym $mod+8 workspace $ws8
 #bindsym $mod+9 workspace $ws9
@@ -99,6 +125,7 @@ workspace_auto_back_and_forth yes
 bindsym $mod+Control+Shift+Left move window to workspace prev
 bindsym $mod+Control+Shift+Right move window to workspace next
 
+# https://www.reddit.com/r/i3wm/comments/3zebq9/anyone_running_i3_on_multimonitor_desktop_is_it/
 bindsym $mod+Control+Shift+Prior move workspace to output left
 bindsym $mod+Control+Shift+Next move workspace to output right
 
@@ -120,6 +147,7 @@ assign [class="xchat"] $ws3
 assign [class="hexchat"] $ws3
 assign [Title="irssi"] $ws3
 assign [Title="weechat"] $ws3
+assign [Title="Microsoft Teams - Mozilla Firefox"] $ws3
 assign [class="Thunderbird"] $ws4
 assign [class="spotify"] $ws5
 assign [class="Thunar"] $ws6
@@ -137,12 +165,20 @@ assign [Title="ranger"] $ws6
 
 
 # colors                BORDER      BACKGROUND 	TEXT        INDICATOR
-client.focused          $teal	    $teal	$dark_text  $light_text
-client.focused_inactive $light_bg   $light_bg  	$dark_text  $light_text
-client.unfocused        $light_bg   $light_bg  	$dark_text  $red
-client.urgent           $red	    $red       	$light_text $red
+client.focused          $purple	    $purple 	$bg         $purple
+client.focused_inactive $bg         $bg 	    $fg         $bg
+client.unfocused        $bg         $bg 	    $fg         $bg
+client.urgent           $red	    $red       	$bg         $red
+client.background       $bg
 
-exec --no-startup-id yabar
+#exec --no-startup-id yabar
+#exec_always --no-startup-id ~/.local/bin/polybar_launch.sh
+exec_always --no-startup-id ~/.local/bin/lemonbar_launch.sh
+exec_always --no-startup-id nm-applet
+exec --no-startup-id i3-battery-popup
+
+# default programs to execute
+exec slack
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -156,22 +192,23 @@ bar {
     tray_padding 0
     
     colors {
-        background $dark_bg
-        statusline $light_text
-	separator  $dark_bg
+        background $bg
+        statusline $separator
+    	separator  $selection
         
         # Colors go 	   <border>      <background>   <text>   
-        focused_workspace  $dark_bg  	 $dark_bg   	$teal
-        active_workspace   $dark_bg  	 $dark_bg   	$light_text
-        inactive_workspace $dark_bg  	 $dark_bg   	$light_text
-        urgent_workspace   $light_text   $red
+        focused_workspace  $purple 	     $purple   	    $selection
+        active_workspace   $fg      	 $fg        	$bg
+        inactive_workspace $bg      	 $bg   	        $fg
+        urgent_workspace   $red          $red           $fg
     }
 }
-
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [instance="float"] floating enable
+
+for_window [title="Battery Warning"] sticky enable
 
 # no title for split windows
 new_window 1pixel
@@ -203,6 +240,26 @@ mode "resize" {
 
 # r
 bindcode $mod+32 mode "resize"
+
+mode "tasks" {
+        # l
+        bindcode $mod+33 exec ~/scripts/dmenu/taskwarrior_dmenu.py --list
+
+        # d
+        bindcode $mod+43 exec ~/scripts/dmenu/taskwarrior_dmenu.py --done
+
+        # a
+        bindcode $mod+38 exec ~/scripts/dmenu/taskwarrior_dmenu.py --add
+       
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# t -- tasks
+bindcode $mod+45 mode "tasks"
+
+# i -- session
+bindcode $mod+42 exec ~/scripts/dmenu/session_dmenu.py
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play

@@ -124,8 +124,8 @@ class Py3status:
             if character in language:
                 language = language.replace(character, "_")
 
-#        lang_color = getattr(self.py3, "COLOR_%s" % language)
-        lang_color = getattr(self.py3, "COLOR_%s" % variant)
+        lang_color = getattr(self.py3, "COLOR_%s" % language)
+        var_color = getattr(self.py3, "COLOR_%s" % variant)
         if not lang_color:
             lang_color = self.colors_dict.get(lang)
         if not lang_color:  # old compatibility: try default value
@@ -143,13 +143,7 @@ class Py3status:
             ).split("|SEPARATOR|")
         ]
     
-        if not variant:
-            variant = layout
-
         return layout, variant[0:2]
-#        return self.py3.command_output(
-#            ["xkblayout-state", "print", "%e"]
-#        ).strip()[0:2]
 
     def _setxkbmap(self):
         # this method works only for the first two predefined layouts.

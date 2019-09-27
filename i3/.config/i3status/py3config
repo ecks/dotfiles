@@ -18,20 +18,42 @@ general {
 	#color_bad = "#ab0300"
 }
 
+order += "screenshot"
+order += "pomodoro"
+order += "taskwarrior"
 order += "arch_updates"
 order += "touchpad"
-order += "keyboard_layout_t470"
+order += "keyboard_layout"
 order += "xrandr"
 order += "bluetooth"
 order += "disk /"
 order += "disk /home"
 order += "path_exists VPN"
+order += "backlight"
 order += "volume master"
 order += "battery_level"
 order += "load"
 order += "wireless _first_"
 order += "ethernet _first_"
-order += "time"
+order += "clock"
+
+screenshot {
+  screenshot_command = "scrot"
+  save_path = "~/Pictures/Screenshot"
+}
+
+pomodoro {
+  format ="{mmss}"
+}
+
+taskwarrior {
+  format ="  {tasks}"
+}
+
+arch_updates {
+  format =" {pacman}"
+  hide_if_zero = True
+}
 
 touchpad {
   format = " {status}"
@@ -39,15 +61,17 @@ touchpad {
   color_off = "#ff0000"
 }
 
-keyboard_layout_t470 {
-  format = " {variant}"
-  layout = ["us", "dvorak"]
-  color_us = "#0038ff"
-  color_dv = "#00ff1e"
+keyboard_layout {
+#  format = "[\?if=variant [\?color=#00ff1e&show  {variant}] |  {layout}]"
+  format = "[\?color=#00ff1e  {variant} |  {layout}]"
+  layouts = ["us", "dvorak", "ru"]
+  color_us = "pink"
+  color_ru = "red"
+#  color_dv = "#00ff1e"
 }
 
 xrandr {
-  DP2-1_rotate = "right"
+  DP2-1_rotate = "left"
   DP2-1_pos = "right-of eDP1"
   DP2-2_pos = "right-of DP2-1"
   DP2-2_mode = "1920x1080"
@@ -101,6 +125,7 @@ load {
     format = " %1min"
 }
 
-time {
-	format = " %A %B %e  %H:%M:%S"
+clock {
+    format = ["{MST7MDT}", "{EST5EDT}", "{UTC}", "{Europe/Sofia}", "{Europe/Moscow}"]
+	format_time = "%A %B %e - %H:%M \[{name}\]"
 }
