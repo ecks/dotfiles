@@ -1,5 +1,6 @@
 [options]
-font = Terminus 12
+font = Monospace 12
+#font = Terminus 12
 #font = FontAwesome
 
 [colors]
