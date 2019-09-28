@@ -108,12 +108,12 @@ bindsym $mod+Shift+space floating toggle
 #bindsym $mod+4 workspace $ws4
 #bindsym $mod+5 workspace $ws5
 #bindsym $mod+6 workspace $ws6
-bindsym $mod+1 exec ~/scripts/i3-mon-swap.py $ws1
-bindsym $mod+2 exec ~/scripts/i3-mon-swap.py $ws2
-bindsym $mod+3 exec ~/scripts/i3-mon-swap.py $ws3
-bindsym $mod+4 exec ~/scripts/i3-mon-swap.py $ws4
-bindsym $mod+5 exec ~/scripts/i3-mon-swap.py $ws5
-bindsym $mod+6 exec ~/scripts/i3-mon-swap.py $ws6
+bindsym $mod+1 exec ~/.config/i3/i3-mon-swap.py $ws1
+bindsym $mod+2 exec ~/.config/i3/i3-mon-swap.py $ws2
+bindsym $mod+3 exec ~/.config/i3/i3-mon-swap.py $ws3
+bindsym $mod+4 exec ~/.config/i3/i3-mon-swap.py $ws4
+bindsym $mod+5 exec ~/.config/i3/i3-mon-swap.py $ws5
+bindsym $mod+6 exec ~/.config/i3/i3-mon-swap.py $ws6
 #bindsym $mod+7 workspace $ws7
 #bindsym $mod+8 workspace $ws8
 #bindsym $mod+9 workspace $ws9
