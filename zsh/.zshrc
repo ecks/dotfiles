@@ -15,8 +15,6 @@ then
   . ~/.functions
 fi
 
-source ~/circadence/functions
-
 source ~/antigen/antigen.zsh
 
 antigen use oh-my-zsh
