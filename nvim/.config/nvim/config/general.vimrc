@@ -15,7 +15,13 @@ set shiftwidth=4 " when using << or >> how many spaces will be shifted over
 set tabstop=4       " number of visual spaces per TAB
 set softtabstop=4 " number of spaces in tab when editing
 
-filetype indent on
+set splitbelow
+set splitright
+
+" diff settings
+set diffopt=vertical
+
+filetype plugin indent on
 
 " Searching
 set incsearch " search as characters are entered
@@ -34,6 +40,16 @@ omap s :normal vs<CR>
 " enable 256 colors in vim
 set t_Co=256
 syntax on
+
+" netrw: https://aonemd.github.io/blog/minimal-vim
+let g:netrw_banner=0
+let g:netrw_browse_split = 4
+let g:netrw_winsize=20
+let g:netrw_liststyle=3
+let g:netrw_localrmdir='rm -r'
+
+"toggle netrw on the left side of the editor
+nnoremap <leader>n :Vex<CR>
 
 " CursorLine
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white

@@ -1,14 +1,19 @@
-let s:plugins = filereadable(expand("~/.config/nvim/pack/minpac/opt/minpac/autoload/minpac/impl.vim", 1))
+"if !s:plugins
+"  fun! InstallPlugin() " bootstrap plugin
+"    silent call mkdir(expand("~/.config/nvim/pack/minpac/opt", 1), 'p')
+"    exe '!git clone https://github.com/k-takata/minpac.git '.expand("~/.config/nvim/pack/minpac/opt/minpac", 1)
+"  endfun
+"else
+"endif
 
-if !s:plugins
+try
+  packadd minpac
+catch
   fun! InstallPlugin() " bootstrap plugin
-    silent call mkdir(expand("~/.config/nvim/pack/minpac/opt", 1), 'p')
-    exe '!git clone https://github.com/k-takata/minpac.git '.expand("~/.config/nvim/pack/minpac/opt/minpac", 1)
+      exe '!git clone https://github.com/k-takata/minpac.git ' stdpath('config').'/pack/minpac/opt/minpac'
   endfun
-else
-endif
+endtry
 
-packadd minpac
 call minpac#init()
 call minpac#add('tpope/vim-unimpaired') " makes switching between tabs easier
 call minpac#add('tpope/vim-surround') " cs to change surrounding text
@@ -22,7 +27,11 @@ call minpac#add('vim-airline/vim-airline') " statusline
 call minpac#add('vim-airline/vim-airline-themes')
 
 call minpac#add('sjl/gundo.vim') " visualize your vim undo tree
+
 call minpac#add('junegunn/fzf') " fuzzy finding
+call minpac#add('junegunn/fzf.vim') " fuzzy finding
+
+call minpac#add('christoomey/vim-tmux-navigator')
 
 call minpac#add('tpope/vim-dispatch')
 call minpac#add('radenling/vim-dispatch-neovim')
