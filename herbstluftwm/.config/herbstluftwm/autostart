@@ -62,7 +62,8 @@ hc keybind $Mod-Shift-p     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-minus            split   bottom  0.5
+# keycode  48 = apostrophe quotedbl minus underscore Cyrillic_e Cyrillic_E
+hc keybind $Mod-apostrophe       split   bottom  0.5
 hc keybind $Mod-Shift-backslash  split   right   0.5  # bar
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
@@ -125,7 +126,7 @@ hc mousebind $Mod-Button3 resize
 hc keybind $Mod-BackSpace   cycle_monitor
 hc keybind $Mod-Tab         cycle_all +1
 hc keybind $Mod-Shift-Tab   cycle_all -1
-hc keybind $Mod-c cycle
+hc keybind $Mod-grave cycle
 hc keybind $Mod-i jumpto urgent
 
 # theme
