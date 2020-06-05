@@ -31,15 +31,15 @@ call minpac#add('sjl/gundo.vim') " visualize your vim undo tree
 call minpac#add('junegunn/fzf') " fuzzy finding
 call minpac#add('junegunn/fzf.vim') " fuzzy finding
 
-call minpac#add('christoomey/vim-tmux-navigator')
-
 call minpac#add('tpope/vim-dispatch')
 call minpac#add('radenling/vim-dispatch-neovim')
 call minpac#add('neomake/neomake')
 
-call minpac#add('neoclide/coc.nvim', {'do': {-> coc#util#install()}})
-"call minpac#add('tommcdo/vim-lion')
-"call minpac#add('welle/targets.vim')
+call minpac#add('vimwiki/vimwiki')
+call minpac#add('michal-h21/vim-zettel')
+
+call minpac#add('tpope/vim-vinegar')
+
 " load all packages
 packload
 
@@ -89,8 +89,10 @@ color dracula
 let g:cargo_makeprg_params = 'build'
 
 " Neomake linter
-"autocmd! BufWritePost * Neomake
+autocmd! BufWritePost * Neomake
 call neomake#configure#automake('w')
+
+let g:neomake_python_flake8_maker = { 'args': ['--config=~/.config/flake8/flake8.conf']}
 let g:neomake_python_enabled_makers = ['flake8']
 
 let g:c_syntax_for_h=1
@@ -103,3 +105,8 @@ let g:neomake_gcc_args=[
     \ '-fopenmp',
     \ '-I.'
     \ ]
+
+"let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md', 'zettel_template': '~/mytemplate.tpl'}, {'path':'~/wiki/'}]
+"let g:vimwiki_list = [{'path': '~/wiki/'}]
+let g:zettel_format = "%Y-%m-%d-%H%M-%title"
+let g:zettel_options = [{"template" :  "~/wiki/mytemplate.tpl"}]

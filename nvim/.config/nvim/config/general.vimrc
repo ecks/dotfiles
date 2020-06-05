@@ -22,6 +22,7 @@ set splitright
 set diffopt=vertical
 
 filetype plugin indent on
+set nocompatible
 
 " Searching
 set incsearch " search as characters are entered
@@ -42,11 +43,11 @@ set t_Co=256
 syntax on
 
 " netrw: https://aonemd.github.io/blog/minimal-vim
-let g:netrw_banner=0
-let g:netrw_browse_split = 4
-let g:netrw_winsize=20
-let g:netrw_liststyle=3
-let g:netrw_localrmdir='rm -r'
+"let g:netrw_banner=0
+"let g:netrw_browse_split = 4
+"let g:netrw_winsize=20
+"let g:netrw_liststyle=3
+"let g:netrw_localrmdir='rm -r'
 
 "toggle netrw on the left side of the editor
 nnoremap <leader>n :Vex<CR>
@@ -55,3 +56,6 @@ nnoremap <leader>n :Vex<CR>
 hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
 nnoremap <Leader>H :set cursorline! cursorcolumn!<CR>
+
+
+let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}, {'path':'~/wiki/'}]
