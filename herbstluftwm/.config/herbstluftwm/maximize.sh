@@ -1,0 +1,1 @@
+/usr/share/doc/herbstluftwm/examples/maximize.sh
