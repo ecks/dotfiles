@@ -1,11 +1,4 @@
-"if !s:plugins
-"  fun! InstallPlugin() " bootstrap plugin
-"    silent call mkdir(expand("~/.config/nvim/pack/minpac/opt", 1), 'p')
-"    exe '!git clone https://github.com/k-takata/minpac.git '.expand("~/.config/nvim/pack/minpac/opt/minpac", 1)
-"  endfun
-"else
-"endif
-
+" call InstallPlugin()
 try
   packadd minpac
 catch
