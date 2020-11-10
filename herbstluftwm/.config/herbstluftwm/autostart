@@ -123,7 +123,7 @@ hc keybind $Mod-space                                                           
 
 maximize=$CONFD/maximize.sh
 # us: slash, dv: z -- keycode  61 = slash question z Z period comma
-hc keybind $Mod-m spawn $maximize
+hc keybind $Mod-slash spawn $maximize
 
 # mouse
 hc mouseunbind --all
