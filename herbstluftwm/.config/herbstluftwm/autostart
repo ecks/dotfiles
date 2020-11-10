@@ -29,12 +29,12 @@ hc keyunbind --all
 #Mod=Mod1    # Use alt as the main modifier
 Mod=Mod4   # Use the super key as the main modifier
 
-# keycode  53 = x X q Q Cyrillic_che Cyrillic_CHE
-hc keybind $Mod-Shift-x quit
-# keycode  32 = o O r R Cyrillic_shcha Cyrillic_SHCHA
+# us: i, dv: c -- keycode  31 = i I c C Cyrillic_sha Cyrillic_SHA
+hc keybind $Mod-Shift-i quit
+# us: o, dv: r -- keycode  32 = o O r R Cyrillic_shcha Cyrillic_SHCHA
 hc keybind $Mod-Shift-o reload
-# keycode  31 = i I c C Cyrillic_sha Cyrillic_SHA
-hc keybind $Mod-Shift-i close
+# su: x, dv: q -- keycode  53 = x X q Q Cyrillic_che Cyrillic_CHE
+hc keybind $Mod-Shift-x close
 hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
 
 # basic movement
@@ -43,13 +43,13 @@ hc keybind $Mod-Left  focus left
 hc keybind $Mod-Down  focus down
 hc keybind $Mod-Up    focus up
 hc keybind $Mod-Right focus right
-# keycode  44 = j J h H Cyrillic_o Cyrillic_O
+# us: j, dv: h -- keycode  44 = j J h H Cyrillic_o Cyrillic_O
 hc keybind $Mod-j     focus left
-# keycode  54 = c C j J Cyrillic_es Cyrillic_ES
+# us: c, dv: j -- keycode  54 = c C j J Cyrillic_es Cyrillic_ES
 hc keybind $Mod-c     focus down
-# keycode  55 = v V k K Cyrillic_em Cyrillic_EM
+# us: v, dv: k -- keycode  55 = v V k K Cyrillic_em Cyrillic_EM
 hc keybind $Mod-v     focus up
-# keycode  33 = p P l L Cyrillic_ze Cyrillic_ZE
+# us: p, dv: l -- keycode  33 = p P l L Cyrillic_ze Cyrillic_ZE
 hc keybind $Mod-p     focus right
 
 # moving clients
@@ -64,9 +64,10 @@ hc keybind $Mod-Shift-p     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-# keycode  48 = apostrophe quotedbl minus underscore Cyrillic_e Cyrillic_E
+# us: apostrophe, dv: minus -- keycode  48 = apostrophe quotedbl minus underscore Cyrillic_e Cyrillic_E
 hc keybind $Mod-apostrophe       split   bottom  0.5
-hc keybind $Mod-Shift-backslash  split   right   0.5  # bar
+# keycode  51 = backslash bar backslash bar backslash slash
+hc keybind $Mod-Shift-backslash  split   right   0.5
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
 
@@ -98,6 +99,7 @@ for i in ${!tag_names[@]} ; do
 done
 
 # dmenu
+# us: h, dv: d -- keycode  43 = h H d D Cyrillic_er Cyrillic_ER
 hc keybind $Mod-h spawn dmenu_run_hlwm
 
 # cycle through tags
@@ -105,10 +107,12 @@ hc keybind $Mod-period use_index +1 --skip-visible
 hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # layouting
-hc keybind $Mod-o remove
+# us: s, dv: o -- keycode  39 = s S o O Cyrillic_yeru Cyrillic_YERU
+hc keybind $Mod-s remove
 hc keybind $Mod-; floating toggle
 hc keybind $Mod-y fullscreen toggle
 hc keybind $Mod-r pseudotile toggle
+
 # The following cycles through the available layouts within a frame, but skips
 # layouts, if the layout change wouldn't affect the actual window positions.
 # I.e. if there are two windows within a frame, the grid layout is skipped.
@@ -118,6 +122,7 @@ hc keybind $Mod-space                                                           
                , cycle_layout +1
 
 maximize=$CONFD/maximize.sh
+# us: slash, dv: z -- keycode  61 = slash question z Z period comma
 hc keybind $Mod-m spawn $maximize
 
 # mouse
@@ -188,6 +193,7 @@ hc set tree_style '╾│ ├└╼─┐'
 hc unlock
 
 # screen lock
+# us: z, dv: semicolon -- keycode  52 = z Z semicolon colon dead_ogonek dead_doubleacute Cyrillic_ya Cyrillic_YA
 hc keybind $Mod-z spawn $CONFD/i3lock.sh
 
 # do multi monitor setup here, e.g.:
