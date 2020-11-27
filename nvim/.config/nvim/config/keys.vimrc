@@ -8,10 +8,6 @@ nnoremap <Leader>w :w<CR>
 " Reload
 nnoremap <Leader>r :so $MYVIMRC<CR>
  
-" Split current window
-nnoremap <Leader>ss :split<CR>
-nnoremap <Leader>sv :vsplit<CR>
-
 " buffer,
 nnoremap <Leader>b :ls<CR>:b<Space>
 

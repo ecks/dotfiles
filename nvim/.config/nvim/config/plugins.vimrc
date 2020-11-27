@@ -24,6 +24,9 @@ call minpac#add('sjl/gundo.vim') " visualize your vim undo tree
 call minpac#add('junegunn/fzf') " fuzzy finding
 call minpac#add('junegunn/fzf.vim') " fuzzy finding
 
+call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('nvim-lua/completion-nvim')
+
 call minpac#add('tpope/vim-dispatch')
 call minpac#add('radenling/vim-dispatch-neovim')
 call minpac#add('neomake/neomake')
@@ -38,8 +41,6 @@ call minpac#add('samoshkin/vim-mergetool')
 " load all packages
 packload
 
-"dein 'tpope/vim-fugitive' " integrate vim with git
-
 "call dein#add('vim-scripts/ReplaceWithRegister') " replace word with register
 "call dein#add('majutsushi/tagbar') " use <Leader>tb to look at functions within file
 "call dein#add('MarcWeber/vim-addon-mw-utils') " dependancy for vim-snipmate
@@ -50,10 +51,6 @@ packload
 
 " fills up hdd
 " call dein#add 'ludovicchabant/vim-gutentags' " manages ctags files
-
-"call dein#add('Shougo/deoplete.nvim')
-"call dein#add('zchee/deoplete-jedi')
-"
 
 
 " Tagbar
@@ -70,13 +67,7 @@ set tags=./tags;/
 map <Leader>uh :help unimpaired<CR>
 
 " FZF
-map <Leader>f :FZF<CR>
-"map <Leader>b :Denite buffer<CR>
-
-" filter file buffer
-"call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-"call denite#custom#var('file/rec/git', 'command',
-"	     \ ['git', 'ls-files', '-co', '--exclude-standard'])
+map <Leader>f :GFiles<CR>
 
 color dracula
 
@@ -87,8 +78,8 @@ let g:cargo_makeprg_params = 'build'
 autocmd! BufWritePost * Neomake
 call neomake#configure#automake('w')
 
-let g:neomake_python_flake8_maker = { 'args': ['--config=~/.config/flake8/flake8.conf']}
-let g:neomake_python_enabled_makers = ['flake8']
+"let g:neomake_python_flake8_maker = { 'args': ['--config=~/.config/flake8/flake8.conf']}
+"let g:neomake_python_enabled_makers = ['flake8']
 
 let g:c_syntax_for_h=1
 let g:neomake_c_enabled_makers=['gcc']
@@ -101,7 +92,3 @@ let g:neomake_gcc_args=[
     \ '-I.'
     \ ]
 
-"let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md', 'zettel_template': '~/mytemplate.tpl'}, {'path':'~/wiki/'}]
-let g:vimwiki_list = [{'path': '~/wiki/'}]
-let g:zettel_format = "%Y-%m-%d-%H%M-%title"
-let g:zettel_options = [{"template" :  "~/wiki/mytemplate.tpl"}]
