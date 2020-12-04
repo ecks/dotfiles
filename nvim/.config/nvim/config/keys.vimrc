@@ -29,6 +29,9 @@ nnoremap k gk
 " highlight last inserted text
 nnoremap gV `[v`]
 
+"toggle netrw in the current buffer
+nnoremap <leader>n :Ex<CR>
+
 " set norelative when in insert mode
 "augroup every
 "  autocmd!

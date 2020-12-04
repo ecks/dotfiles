@@ -67,7 +67,9 @@ set tags=./tags;/
 map <Leader>uh :help unimpaired<CR>
 
 " FZF
-map <Leader>f :GFiles<CR>
+map <Leader>f :Files<CR>
+map <Leader>fg :GFiles<CR>
+map <Leader>fb :Buffers<CR>
 
 color dracula
 
