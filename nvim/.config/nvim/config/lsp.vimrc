@@ -1,6 +1,8 @@
 lua <<EOF
 vim.cmd('packadd nvim-lspconfig')
 require'lspconfig'.pyls.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu

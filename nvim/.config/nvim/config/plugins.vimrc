@@ -73,6 +73,9 @@ map <Leader>fb :Buffers<CR>
 
 color dracula
 
+" Source Vim configuration file and install plugins
+nnoremap <silent><leader>1 :so $MYVIMRC \| :call minpac#update()<CR>
+
 " dispatch -- parameter to rust's cargo build system
 let g:cargo_makeprg_params = 'build'
 
