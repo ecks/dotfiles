@@ -14,6 +14,8 @@ end
 
 require'lspconfig'.pyls.setup{on_attach=custom_attach}
 require'lspconfig'.gopls.setup{on_attach=custom_attach}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.rust_analyzer.setup{}
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
