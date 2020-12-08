@@ -14,7 +14,7 @@ call minpac#add('tpope/vim-commentary') " comment out blocks of text
 
 call minpac#add('dracula/vim') " color scheme
 
-call minpac#add('Shougo/denite.nvim') " fuzzy finder
+"call minpac#add('Shougo/denite.nvim') " fuzzy finder
 
 call minpac#add('vim-airline/vim-airline') " statusline
 call minpac#add('vim-airline/vim-airline-themes')
@@ -27,9 +27,9 @@ call minpac#add('junegunn/fzf.vim') " fuzzy finding
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('nvim-lua/completion-nvim')
 
-call minpac#add('tpope/vim-dispatch')
-call minpac#add('radenling/vim-dispatch-neovim')
-call minpac#add('neomake/neomake')
+"call minpac#add('tpope/vim-dispatch')
+"call minpac#add('radenling/vim-dispatch-neovim')
+"call minpac#add('neomake/neomake')
 
 call minpac#add('vimwiki/vimwiki')
 call minpac#add('michal-h21/vim-zettel')
@@ -37,6 +37,8 @@ call minpac#add('michal-h21/vim-zettel')
 call minpac#add('tpope/vim-vinegar')
 
 call minpac#add('samoshkin/vim-mergetool')
+
+call minpac#add('mattn/vim-goimports')
 
 " load all packages
 packload
@@ -77,8 +79,8 @@ color dracula
 let g:cargo_makeprg_params = 'build'
 
 " Neomake linter
-autocmd! BufWritePost * Neomake
-call neomake#configure#automake('w')
+"autocmd! BufWritePost * Neomake
+"call neomake#configure#automake('w')
 
 "let g:neomake_python_flake8_maker = { 'args': ['--config=~/.config/flake8/flake8.conf']}
 "let g:neomake_python_enabled_makers = ['flake8']
