@@ -40,6 +40,8 @@ call minpac#add('samoshkin/vim-mergetool')
 
 call minpac#add('mattn/vim-goimports')
 
+call minpac#add('tpope/vim-fugitive')
+
 " load all packages
 packload
 

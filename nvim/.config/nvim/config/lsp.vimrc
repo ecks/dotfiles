@@ -16,15 +16,15 @@ require'lspconfig'.pyls.setup{on_attach=custom_attach}
 require'lspconfig'.gopls.setup{on_attach=custom_attach}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.rust_analyzer.setup{}
+
+-- Use <Tab> and <S-Tab> to navigate through popup menu
+
+-- Set completeopt to have a better completion experience
+vim.api.nvim_command('set completeopt=menuone,noinsert,noselect')
+-- Avoid showing message extra message when using completion
+vim.api.nvim_command('set shortmess+=c')
 EOF
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
-
