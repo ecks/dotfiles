@@ -4,4 +4,4 @@ runtime config/line.vimrc " load before plugins for airline to work properly
 runtime config/plugins.vimrc
 
 runtime config/wiki.vimrc
-runtime config/lsp.vimrc
+lua require('config/lsp')
