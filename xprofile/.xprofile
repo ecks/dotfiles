@@ -4,3 +4,13 @@ export TERMINAL="termite"
 # layout to us, dvorak, ru and make capslock be ctrl instead (two ctrl buttons)
 setxkbmap -model hhkb -layout us,us,ru ,dvorak, -option ctrl:nocaps
 #setxkbmap -option caps:escape
+
+# screen off after 20 min
+xset dpms 0 0 1200
+
+# remap ctrl single press to esc
+xcape &
+
+# refresh fonts
+xset +fp /home/hristo/.local/share/fonts
+xset fp rehash

@@ -14,6 +14,10 @@ hc() {
     herbstclient "$@"
 }
 
+is_first_start() {
+    ! hc silent get_attr my_loaded 2>/dev/null
+}
+
 CONFD=~/.config/herbstluftwm
 
 hc emit_hook reload
@@ -38,19 +42,26 @@ hc keybind $Mod-Shift-x close
 hc keybind $Mod-Return spawn ${TERMINAL:-xterm} # use your $TERMINAL with xterm as fallback
 
 # basic movement
+
+maximize=$CONFD/maximize.sh
+# us: slash, dv: z -- keycode  61 = slash question z Z period comma
+hc keybind $Mod-slash spawn $maximize
+
+
+focus_maximized=$CONFD/focus_maximized.sh
 # focusing clients
 hc keybind $Mod-Left  focus left
 hc keybind $Mod-Down  focus down
 hc keybind $Mod-Up    focus up
 hc keybind $Mod-Right focus right
 # us: j, dv: h -- keycode  44 = j J h H Cyrillic_o Cyrillic_O
-hc keybind $Mod-j     focus left
+hc keybind $Mod-j     spawn $focus_maximized left
 # us: c, dv: j -- keycode  54 = c C j J Cyrillic_es Cyrillic_ES
-hc keybind $Mod-c     focus down
+hc keybind $Mod-c     spawn $focus_maximized down
 # us: v, dv: k -- keycode  55 = v V k K Cyrillic_em Cyrillic_EM
-hc keybind $Mod-v     focus up
+hc keybind $Mod-v     spawn $focus_maximized up
 # us: p, dv: l -- keycode  33 = p P l L Cyrillic_ze Cyrillic_ZE
-hc keybind $Mod-p     focus right
+hc keybind $Mod-p     spawn $focus_maximized right
 
 # moving clients
 hc keybind $Mod-Shift-Left  shift left
@@ -121,9 +132,6 @@ hc keybind $Mod-space                                                           
                      . cycle_layout +1 vertical horizontal max vertical grid    \
                , cycle_layout +1
 
-maximize=$CONFD/maximize.sh
-# us: slash, dv: z -- keycode  61 = slash question z Z period comma
-hc keybind $Mod-slash spawn $maximize
 
 # mouse
 hc mouseunbind --all
@@ -142,27 +150,39 @@ hc keybind $Mod-i jumpto urgent
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#222222'
-hc set frame_border_normal_color '#101010'
-hc set frame_bg_normal_color '#565656'
-hc set frame_bg_active_color '#345F0C'
+#hc set frame_border_active_color '#222222'
+hc set frame_border_active_color '#6272a4'
+#hc set frame_border_normal_color '#101010'
+hc set frame_border_normal_color '#282a36'
+#hc set frame_bg_normal_color '#565656'
+hc set frame_bg_normal_color '#bd93f9'
+#hc set frame_bg_active_color '#345F0C'
+hc set frame_bg_active_color '#6272a4'
 hc set frame_border_width 1
+#hc set always_show_frame 1
 hc set always_show_frame 1
 hc set frame_bg_transparent 1
 hc set frame_transparent_width 5
 hc set frame_gap 4
 
-hc attr theme.active.color '#9fbc00'
-hc attr theme.normal.color '#454545'
+#hc attr theme.active.color '#9fbc00'
+hc attr theme.active.color '#6272a4'
+#hc attr theme.normal.color '#454545'
+hc attr theme.normal.color '#282a36'
 hc attr theme.urgent.color orange
-hc attr theme.inner_width 1
-hc attr theme.inner_color black
-hc attr theme.border_width 3
+hc attr theme.inner_width 0
+hc attr theme.outer_width 0
+#hc attr theme.inner_color black
+hc attr theme.inner_color '#282a36'
+hc attr theme.outer_color '#282a36'
+hc attr theme.border_width 6
 hc attr theme.floating.border_width 4
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color black
-hc attr theme.active.inner_color '#3E4A00'
-hc attr theme.active.outer_color '#3E4A00'
+#hc attr theme.active.inner_color '#3E4A00'
+hc attr theme.active.inner_color '#6272a4'
+#hc attr theme.active.outer_color '#3E4A00'
+hc attr theme.active.outer_color '#6272a4'
 hc attr theme.background_color '#141414'
 
 hc set window_gap 0
@@ -178,7 +198,10 @@ hc set auto_detect_monitors true
 
 # rules
 hc unrule -F
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
+
+hc rule class=Termite tag=1 focus=on # move all xterms to tag 3
+hc rule class=Firefox tag=2
+
 hc rule focus=on # normally focus new clients
 #hc rule focus=off # normally do not focus new clients
 # give focus to most common terminals
@@ -199,7 +222,10 @@ hc keybind $Mod-z spawn $CONFD/i3lock.sh
 # do multi monitor setup here, e.g.:
 # hc set_monitors 1280x1024+0+0 1280x1024+1280+0
 # or simply:
-# hc detect_monitors
+#hc detect_monitors
+
+"$CONFD/toggle_ultrasplit.sh"
+
 
 primary=$(xrandr --listmonitors | grep -v "Monitors" | grep "\*" | awk '{print $1}' | tr -d ':')
 # find the panel
@@ -213,3 +239,15 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
         BARPYRUS_CONFIG=~/.config/barpyrus/config_minimal.py "$panel" "$monitor" &
     fi
 done
+
+if is_first_start; then
+    hc new_attr bool my_loaded true
+
+    ultrawide=$(hc detect_monitors -l | grep "3440x1440" | wc -l)
+    if [[ $ultrawide == "1" ]]; then
+        hc new_attr bool my_ultrasplit true
+    fi
+
+    slack &
+    nm-applet &
+fi
