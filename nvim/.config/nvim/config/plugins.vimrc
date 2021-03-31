@@ -13,6 +13,7 @@ call minpac#add('tpope/vim-surround') " cs to change surrounding text
 call minpac#add('tpope/vim-commentary') " comment out blocks of text
 
 call minpac#add('dracula/vim') " color scheme
+call minpac#add('morhetz/gruvbox')
 
 "call minpac#add('Shougo/denite.nvim') " fuzzy finder
 
@@ -26,6 +27,14 @@ call minpac#add('junegunn/fzf.vim') " fuzzy finding
 
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('nvim-lua/completion-nvim')
+
+call minpac#add('nvim-lua/popup.nvim')
+call minpac#add('nvim-lua/plenary.nvim')
+call minpac#add('nvim-telescope/telescope.nvim')
+
+
+call minpac#add('nvim-treesitter/nvim-treesitter')
+call minpac#add('nvim-treesitter/nvim-treesitter-textobjects')
 
 "call minpac#add('tpope/vim-dispatch')
 "call minpac#add('radenling/vim-dispatch-neovim')
@@ -41,6 +50,10 @@ call minpac#add('samoshkin/vim-mergetool')
 call minpac#add('mattn/vim-goimports')
 
 call minpac#add('tpope/vim-fugitive')
+
+call minpac#add('moll/vim-bbye')
+
+call minpac#add('easymotion/vim-easymotion')
 
 " load all packages
 packload
@@ -71,11 +84,16 @@ set tags=./tags;/
 map <Leader>uh :help unimpaired<CR>
 
 " FZF
-map <Leader>f :Files<CR>
-map <Leader>fg :GFiles<CR>
-map <Leader>fb :Buffers<CR>
+"map <Leader>f :Files<CR>
+map <Leader>f :Telescope find_files<CR>
+"map <Leader>fg :GFiles<CR>
+map <Leader>fg :Telescope git_files<CR>
+"map <Leader>fb :Buffers<CR>
+map <Leader>fb :Telescope buffers<CR>
+map <Leader>g :Telescope live_grep<CR>
 
-color dracula
+"color dracula
+color gruvbox
 
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>1 :so $MYVIMRC \| :call minpac#update()<CR>
@@ -101,3 +119,69 @@ let g:neomake_gcc_args=[
     \ '-I.'
     \ ]
 
+"lua <<EOF
+"require'nvim-treesitter.configs'.setup {
+"  textobjects = {
+"    select = {
+"      enable = true,
+"      keymaps = {
+"        -- You can use the capture groups defined in textobjects.scm
+"        ["af"] = "@function.outer",
+"        ["if"] = "@function.inner",
+"        ["ac"] = "@class.outer",
+"        ["ic"] = "@class.inner",
+"
+"        -- Or you can define your own textobjects like this
+"        ["iF"] = {
+"          python = "(function_definition) @function",
+"          cpp = "(function_definition) @function",
+"          c = "(function_definition) @function",
+"          java = "(method_declaration) @function",
+"        },
+"      },
+"    },
+"  },
+"}
+"EOF
+"
+"lua <<EOF
+"require'nvim-treesitter.configs'.setup {
+"  textobjects = {
+"    swap = {
+"      enable = true,
+"      swap_next = {
+"        ["<leader>a"] = "@parameter.inner",
+"      },
+"      swap_previous = {
+"        ["<leader>A"] = "@parameter.inner",
+"      },
+"    },
+"  },
+"}
+"EOF
+"
+"lua <<EOF
+"require'nvim-treesitter.configs'.setup {
+"  textobjects = {
+"    move = {
+"      enable = true,
+"      goto_next_start = {
+"        ["]m"] = "@function.outer",
+"        ["]]"] = "@class.outer",
+"      },
+"      goto_next_end = {
+"        ["]M"] = "@function.outer",
+"        ["]["] = "@class.outer",
+"      },
+"      goto_previous_start = {
+"        ["[m"] = "@function.outer",
+"        ["[["] = "@class.outer",
+"      },
+"      goto_previous_end = {
+"        ["[M"] = "@function.outer",
+"        ["[]"] = "@class.outer",
+"      },
+"    },
+"  },
+"}
+"EOF

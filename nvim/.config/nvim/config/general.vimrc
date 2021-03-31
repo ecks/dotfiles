@@ -47,5 +47,6 @@ hi CursorLine cterm=NONE ctermbg=darkred ctermfg=white
 hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white
 nnoremap <Leader>H :set cursorline! cursorcolumn!<CR>
 
+set mouse=a
 
 let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}, {'path':'~/wiki/'}]

@@ -21,6 +21,10 @@ end
 -- Save file
 mapper("n", "<Leader>w", ":w<CR>", {})
 
+
+-- Quit buffer, preserving windows
+mapper("n", "<Leader>q", ":Bdelete<CR>", {})
+
 -- Reload
 mapper("n", "<Leader>r", ":so $MYVIMRC<CR>", {})
  
@@ -41,6 +45,7 @@ mapper("n", "gV", "`[v`]", {})
 mapper("n", "<Leader>nn", ":Ex<CR>", {})
 mapper("n", "<Leader>nv", ":Vex<CR>", {})
 
+mapper("n", "<Leader>yy", ":let @\" = expand('%:t:r')<CR>", {})
 EOF
 
 "let mapleader=","

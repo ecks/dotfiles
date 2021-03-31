@@ -1,5 +1,8 @@
 #source /etc/profile
 
+# tmux
+alias tmux='tmux -2' # enable 256 colors
+
 if [ -f ~/.hosts ];
 then
   . ~/.hosts
@@ -13,6 +16,11 @@ fi
 if [ -f ~/.functions ];
 then
   . ~/.functions
+fi
+
+if [ -f ~/.hlwm ];
+then
+  . ~/.hlwm
 fi
 
 source ~/antigen/antigen.zsh
@@ -35,9 +43,9 @@ case "$TERM" in
     TERM=rxvt-unicode
     ;;
 
-  screen)
-    TERM=screen-256color
-    ;;
+#  screen)
+#    TERM=screen-256color
+#    ;;
   xterm-termite)
     TERM=xterm
 
@@ -81,8 +89,6 @@ alias v='nvim'
 # set to vim mode
 bindkey -v
 
-# tmux
-alias tmux='tmux -2' # enable 256 colors
 #alias t='tmux'
 alias tn='tmux new -s' # create target session by name
 alias ta='tmux attach'
@@ -103,5 +109,10 @@ zstyle ':completion:*' menu select
 
 #PROMPT='%1~ %m%# '
 
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin" # Add RVM to PATH for scripting
-export GOPATH="/home/hasenov/go" # Add GOPATH
+#export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin" # Add RVM to PATH for scripting
+export GOPATH="$HOME/go" # Add GOPATH
+export PATH=$PATH:$HOME/bin:$HOME/nvim-build2/bin/:$GOPATH/bin
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+keychain -q ~/.ssh/id_rsa
