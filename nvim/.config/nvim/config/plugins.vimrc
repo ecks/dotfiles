@@ -36,10 +36,6 @@ call minpac#add('nvim-telescope/telescope.nvim')
 call minpac#add('nvim-treesitter/nvim-treesitter')
 call minpac#add('nvim-treesitter/nvim-treesitter-textobjects')
 
-"call minpac#add('tpope/vim-dispatch')
-"call minpac#add('radenling/vim-dispatch-neovim')
-"call minpac#add('neomake/neomake')
-
 call minpac#add('vimwiki/vimwiki')
 call minpac#add('michal-h21/vim-zettel')
 
@@ -50,6 +46,8 @@ call minpac#add('samoshkin/vim-mergetool')
 call minpac#add('mattn/vim-goimports')
 
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('lewis6991/gitsigns.nvim')
+call minpac#add('tjdevries/colorbuddy.nvim')
 
 call minpac#add('moll/vim-bbye')
 
@@ -59,26 +57,14 @@ call minpac#add('easymotion/vim-easymotion')
 packload
 
 "call dein#add('vim-scripts/ReplaceWithRegister') " replace word with register
-"call dein#add('majutsushi/tagbar') " use <Leader>tb to look at functions within file
 "call dein#add('MarcWeber/vim-addon-mw-utils') " dependancy for vim-snipmate
 "call dein#add('tomtom/tlib_vim') " dependancy for vim-snipmate
 "call dein#add('garbas/vim-snipmate') " automatic insertion of code blocks by leading keywords
 " Optional package exposes the snippets
 "call dein#add('honza/vim-snippets') " database of snippets for vim-snipmate
 
-" fills up hdd
-" call dein#add 'ludovicchabant/vim-gutentags' " manages ctags files
-
-
-" Tagbar
-map <Leader>tb :TagbarToggle<CR>
-let g:tagbar_autoclose=1
-
 " toggle gundo
 nnoremap <Leader>u :GundoToggle<CR>
-
-" Ctags
-set tags=./tags;/
 
 " look up docs for unimpaired
 map <Leader>uh :help unimpaired<CR>
@@ -95,6 +81,16 @@ map <Leader>g :Telescope live_grep<CR>
 "color dracula
 color gruvbox
 
+" for gitsigns
+highlight GitSignsAdd guifg=yellow ctermfg=yellow
+highlight GitSignsAdd guibg=black ctermbg=black
+
+highlight GitSignsChange guifg=brown ctermfg=brown
+highlight GitSignsChange guibg=black ctermbg=black
+
+highlight GitSignsDelete guifg=red ctermfg=red
+highlight GitSignsDelete guibg=black ctermbg=black
+
 " Source Vim configuration file and install plugins
 nnoremap <silent><leader>1 :so $MYVIMRC \| :call minpac#update()<CR>
 
@@ -108,16 +104,6 @@ let g:cargo_makeprg_params = 'build'
 "let g:neomake_python_flake8_maker = { 'args': ['--config=~/.config/flake8/flake8.conf']}
 "let g:neomake_python_enabled_makers = ['flake8']
 
-let g:c_syntax_for_h=1
-let g:neomake_c_enabled_makers=['gcc']
-let g:neomake_gcc_args=[
-    \ '-fsyntax-only',
-    \ '-std=gnu11',
-    \ '-Wall',
-    \ '-Wextra',
-    \ '-fopenmp',
-    \ '-I.'
-    \ ]
 
 "lua <<EOF
 "require'nvim-treesitter.configs'.setup {

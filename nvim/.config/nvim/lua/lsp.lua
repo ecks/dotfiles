@@ -1,7 +1,7 @@
 vim.cmd('packadd nvim-lspconfig')
 
 local mapper = function(mode, key, result)
-  vim.fn.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
+  vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
 
 local custom_attach = function()
@@ -29,6 +29,7 @@ lspconfig.sumneko_lua.setup {
   cmd = {"/home/hristo/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/hristo/lua-language-server/main.lua"};
 }
 lspconfig.rust_analyzer.setup{on_attach=custom_attach}
+lspconfig.vuels.setup{on_attach=custom_attach}
 lspconfig.yamlls.setup{
   on_attach=custom_attach,
   settings = {
@@ -63,8 +64,8 @@ function MyLspRename()
 end
 
 -- Use <Tab> and <S-Tab> to navigate through popup menu
-vim.fn.nvim_set_keymap('i', '<Tab>', [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {noremap = true, expr = true})
-vim.fn.nvim_set_keymap('i', '<S-Tab>', [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]], {noremap = true, expr = true})
+vim.api.nvim_set_keymap('i', '<Tab>', [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {noremap = true, expr = true})
+vim.api.nvim_set_keymap('i', '<S-Tab>', [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]], {noremap = true, expr = true})
 
 -- Set completeopt to have a better completion experience
 vim.api.nvim_command('set completeopt=menuone,noinsert,noselect')

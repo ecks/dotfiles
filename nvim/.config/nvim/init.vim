@@ -4,5 +4,6 @@ runtime config/line.vimrc " load before plugins for airline to work properly
 runtime config/plugins.vimrc
 
 runtime config/wiki.vimrc
+lua require('gs')
 lua require('lsp')
 lua require('ts')

@@ -1,5 +1,5 @@
 export TERM="xterm"
-export TERMINAL="termite"
+export TERMINAL="alacritty"
 
 # layout to us, dvorak, ru and make capslock be ctrl instead (two ctrl buttons)
 setxkbmap -model hhkb -layout us,us,ru ,dvorak, -option ctrl:nocaps
