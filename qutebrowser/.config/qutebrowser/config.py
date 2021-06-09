@@ -18,7 +18,7 @@ config.bind(',gs', 'tab-select Slack')
 config.bind(',gm', 'tab-select Mail')
 
 config.bind(',v', 'spawn mpv {url}')
-config.bind(',V', 'hint --rapid links spawn umpv {hint-url}')
+config.bind(',V', 'hint --rapid links spawn mpv {hint-url}')
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.

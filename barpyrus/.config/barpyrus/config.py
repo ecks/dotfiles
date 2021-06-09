@@ -3,6 +3,8 @@ import contextlib
 import multiprocessing
 import collections
 
+from string import Template
+
 from barpyrus import lemonbar, conky, trayer, widgets, hlwm, core
 
 class Gruv:
@@ -71,6 +73,12 @@ def zip_renderer(self, painter):
         painter.space(2)
     #painter.space(3)
 
+
+def cg_net(cg):
+    with cg.if_('up tun0'):
+        with cg.temp_fg(Gruv.YELLOW_LIGHT):
+            cg.symbol(0xe0a6)
+
 def cg_battery(cg):
     # first icon: 0 percent
     # last icon: 100 percent
@@ -80,28 +88,32 @@ def cg_battery(cg):
     ]
     bat_delta = 100 / len(bat_icons)
 
-    with cg.if_('existing /sys/class/power_supply/BAT0'), cg.if_('match "$battery" != ""'):
-        cg.fg(ACCENT_COLOR)
-
-        with cg.if_('match "$battery" != "discharging $battery_percent%"'):
-            cg.symbol(0xe0db)
-
-        with cg.cases():
-            for i, icon in enumerate(bat_icons[:-1]):
-                cg.case('match $battery_percent < %d' % ((i+1)*bat_delta))
-                cg.symbol(icon)
-
-            cg.else_()
-            cg.symbol(bat_icons[-1])  # icon for 100 percent
-
-        cg.fg(None)
-        cg.space(5)
-
-        with highlight_critical(cg, 'battery_percent', '< 10'):
-            cg.var('battery_percent')
-            cg.text('% ')
-            cg.var('battery_time')
+    def cg_battery_single(bat_name):
+        with cg.if_(f'existing /sys/class/power_supply/{bat_name}'), cg.if_(f'match "${{battery {bat_name}}}" != ""'):
+            cg.fg(ACCENT_COLOR)
+    
+            with cg.if_(f'match "${{battery {bat_name}}}" != "discharging ${{battery_percent {bat_name}}}%"'):
+                cg.symbol(0xe0db)
+    
+            with cg.cases():
+                for i, icon in enumerate(bat_icons[:-1]):
+                    cg.case(f'match ${{battery_percent {bat_name}}} < %d' % ((i+1)*bat_delta))
+                    cg.symbol(icon)
+    
+                cg.else_()
+                cg.symbol(bat_icons[-1])  # icon for 100 percent
+    
+            cg.fg(None)
             cg.space(5)
+    
+            with highlight_critical(cg, f'battery_percent {bat_name}', '< 10'):
+                cg.var(f'battery_percent {bat_name}')
+                cg.text('% ')
+                cg.var(f'battery_time {bat_name}')
+                cg.space(5)
+
+    for b in ["BAT0", "BAT1"]:
+        cg_battery_single(b)
 
     with cg.if_('existing /run/tlp/manual_mode'):
         cg.fg(ACCENT_COLOR)
@@ -136,6 +148,7 @@ def main():
     hc(['pad', str(monitor), str(geom.height)])
 
     cg = conky.ConkyGenerator(lemonbar.textpainter())
+    cg_net(cg)
     cg_battery(cg)
     cg_time(cg)
 
