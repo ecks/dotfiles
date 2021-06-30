@@ -1624,11 +1624,12 @@ config.bind(',t', 'config-cycle tabs.show switching always')
 ## Bindings for register mode
 # config.bind('<Escape>', 'leave-mode', mode='register')
 
-import dracula.draw
+import theme
 
-dracula.draw.blood(c, {
+theme.apply(c, {
     'spacing': {
         'vertical': 6,
         'horizontal': 8
     }
 })
+
