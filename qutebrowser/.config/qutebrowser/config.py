@@ -17,8 +17,8 @@ config.bind(',s', 'open -t standup')
 config.bind(',gs', 'tab-select Slack')
 config.bind(',gm', 'tab-select Mail')
 
-config.bind(',v', 'spawn mpv {url}')
-config.bind(',V', 'hint --rapid links spawn mpv {hint-url}')
+config.bind(',v', 'spawn ~/.local/share/qutebrowser/userscripts/umpv {url}')
+config.bind(',V', 'hint links spawn ~/.local/share/qutebrowser/userscripts/umpv {hint-url}')
 
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
