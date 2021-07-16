@@ -5,9 +5,7 @@ set lazyredraw " redraw only when we need to.
 set showmatch " highlight matching [{()}]
 
 " Turn Paste on and off
-nnoremap <Leader>p :set invpaste paste?<CR>
-set pastetoggle=<Leader>p
-set showmode
+nnoremap <Leader>p :set invpaste paste?<CR> set pastetoggle=<Leader>p set showmode
 
 " indentation -- http://vim.wikia.com/wiki/Indenting_source_code
 set expandtab " turns tabs into spaces
@@ -31,13 +29,6 @@ set hlsearch " highlight matches
 " turn off search highlight
 nnoremap <Leader><space> :nohlsearch<CR>
 
-" copy or change search hit --
-" http://vim.wikia.com/wiki/Copy_or_change_search_hit
-" Make a simple "search" text object.
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-     \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
-
 " enable 256 colors in vim
 set t_Co=256
 syntax on
@@ -49,4 +40,4 @@ nnoremap <Leader>H :set cursorline! cursorcolumn!<CR>
 
 set mouse=a
 
-let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}, {'path':'~/wiki/'}]
+color gruvbox

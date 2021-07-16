@@ -9,6 +9,15 @@ local gsconfig = require('gitsigns')
 --Group.new('GitSignsChange', c.yellow)
 --Group.new('GitSignsDelete', c.red)
 
+vim.cmd('highlight GitSignsAdd guifg=yellow ctermfg=yellow')
+vim.cmd('highlight GitSignsAdd guibg=black ctermbg=black')
+
+vim.cmd('highlight GitSignsChange guifg=brown ctermfg=brown')
+vim.cmd('highlight GitSignsChange guibg=black ctermbg=black')
+
+vim.cmd('highlight GitSignsDelete guifg=red ctermfg=red')
+vim.cmd('highlight GitSignsDelete guibg=black ctermbg=black')
+
 gsconfig.setup {
   signs = {
     add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
