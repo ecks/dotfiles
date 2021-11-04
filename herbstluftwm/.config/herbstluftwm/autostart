@@ -133,6 +133,9 @@ hc keybind $Mod-space                                                           
                , cycle_layout +1
 
 
+hc keybind XF86MonBrightnessDown spawn xbacklight -dec 10
+hc keybind XF86MonBrightnessUp   spawn xbacklight -inc 10
+
 # mouse
 hc mouseunbind --all
 hc mousebind $Mod-Button1 move

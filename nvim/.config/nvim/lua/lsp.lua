@@ -26,7 +26,7 @@ lspconfig.gopls.setup{on_attach=custom_attach, cmd = { "gopls" }, filetypes = { 
 lspconfig.pyright.setup{on_attach=custom_attach}
 lspconfig.sumneko_lua.setup {
   on_attach=custom_attach,
-  cmd = {"/home/hristo/lua-language-server/bin/Linux/lua-language-server", "-E", "/home/hristo/lua-language-server/main.lua"};
+  cmd = {"~/lua-language-server/bin/Linux/lua-language-server", "-E", "~/lua-language-server/main.lua"};
 }
 lspconfig.rust_analyzer.setup{on_attach=custom_attach}
 lspconfig.vuels.setup{on_attach=custom_attach}
