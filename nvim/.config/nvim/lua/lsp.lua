@@ -22,7 +22,18 @@ end
 
 local lspconfig = require'lspconfig'
 lspconfig.bashls.setup{on_attach=custom_attach}
-lspconfig.gopls.setup{on_attach=custom_attach, cmd = { "gopls" }, filetypes = { "go", "gomod" }, root_dir = lspconfig.util.root_pattern("go.mod", ".git")}
+lspconfig.gopls.setup{settings = {
+                        gopls = {
+                          analyses = {
+                            unusedparams = true,
+                          },
+                          staticcheck = true,
+                        },
+                      },
+                      on_attach=custom_attach,
+                      cmd = { "gopls" },
+                      filetypes = { "go", "gomod" },
+                      root_dir = lspconfig.util.root_pattern("go.mod", ".git")}
 lspconfig.pyright.setup{on_attach=custom_attach}
 lspconfig.sumneko_lua.setup {
   on_attach=custom_attach,

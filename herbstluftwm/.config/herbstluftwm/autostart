@@ -202,12 +202,13 @@ hc set auto_detect_monitors true
 # rules
 hc unrule -F
 
-hc rule class=Termite     tag=1 focus=on # move all xterms to tag 3
+hc rule class=Alacritty   tag=1 focus=on # move all xterms to tag 3
 hc rule class=Firefox     tag=2
 hc rule class=qutebrowser tag=2
 hc rule class=Slack       tag=3
 hc rule class=zoom        tag=4
 hc rule class=keepassxc   tag=4
+hc rule class=neovide     tag=5
 
 hc rule focus=on # normally focus new clients
 #hc rule focus=off # normally do not focus new clients
@@ -258,3 +259,5 @@ if is_first_start; then
     slack &
     nm-applet &
 fi
+
+~/i3-battery-popup/i3-battery-popup &
