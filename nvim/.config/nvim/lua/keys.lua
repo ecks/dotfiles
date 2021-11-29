@@ -19,6 +19,14 @@ vimp.nnoremap('<C-J>', '<C-W><C-J>')
 vimp.nnoremap('<C-K>', '<C-W><C-K>')
 vimp.nnoremap('<C-L>', '<C-W><C-L>')
 vimp.nnoremap('<C-H>', '<C-W><C-H>')
+vimp.nnoremap('<C-->', '<C-W><C-S>')
+vimp.nnoremap('<C-|>', '<C-W><C-V>') 
+
+-- copy/paste
+vimp.vnoremap('<Leader>c', '"+y')
+
+vimp.nnoremap('<Leader>v', '"+p')
+vimp.inoremap('<Leader>v', '<C-r>+')
 
 -- run the current line as if it were a command
 vimp.nnoremap('<leader>e', ":exe getline(line('.'))<cr>")

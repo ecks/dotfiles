@@ -38,6 +38,7 @@ return require('packer').startup(function()
           
           
           use 'nvim-treesitter/nvim-treesitter'
+          use 'nvim-treesitter/playground'
           use 'nvim-treesitter/nvim-treesitter-textobjects'
           
           use 'vimwiki/vimwiki'
