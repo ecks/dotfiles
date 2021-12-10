@@ -1,0 +1,5 @@
+hc() {
+    herbstclient "$@"
+}
+
+alias hconf="nvim ~/.config/herbstluftwm/autostart"
