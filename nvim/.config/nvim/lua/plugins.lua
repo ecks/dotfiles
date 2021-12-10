@@ -57,7 +57,6 @@ return require('packer').startup(function()
           
           use 'easymotion/vim-easymotion'
           
-          use 'svermeulen/nvim-moonmaker'
           use 'svermeulen/vimpeccable'
-	  use 'justinmk/vim-dirvish'
+      	  use 'justinmk/vim-dirvish'
 end)
