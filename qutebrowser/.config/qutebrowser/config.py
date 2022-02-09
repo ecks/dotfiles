@@ -20,6 +20,9 @@ config.bind(',gm', 'tab-select Mail')
 config.bind(',v', 'spawn ~/.local/share/qutebrowser/userscripts/umpv {url}')
 config.bind(',V', 'hint links spawn ~/.local/share/qutebrowser/userscripts/umpv {hint-url}')
 
+config.bind('<Alt-Shift-u>', 'spawn --userscript qute-keepassxc --key hristo@asenov.gdn', mode='insert')
+config.bind('pw', 'spawn --userscript qute-keepassxc --key hristo@asenov.gdn', mode='normal')
+
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
