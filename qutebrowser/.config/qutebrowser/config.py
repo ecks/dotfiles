@@ -7,8 +7,11 @@
 ## Remove it to not load settings done via the GUI.
 config.load_autoconfig(False)
 
-config.set('content.unknown_url_scheme_policy', 'allow-all', '*://torc.zoom.us')
+config.set('content.unknown_url_scheme_policy', 'allow-all', '*://*.zoom.us')
 config.set('content.notifications.enabled', True, '*://app.slack.com')
+
+config.source('work.py')
+
 #config.set('content.notifications', True)
 
 config.bind(',i', 'open -t torcinfra')

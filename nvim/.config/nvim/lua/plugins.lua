@@ -32,7 +32,12 @@ return require('packer').startup(function()
           use 'junegunn/fzf.vim' -- fuzzy finding
           
           use 'neovim/nvim-lspconfig'
-          use 'nvim-lua/completion-nvim'
+          use 'hrsh7th/nvim-cmp'
+          use 'hrsh7th/cmp-nvim-lsp'
+          use 'hrsh7th/cmp-buffer'
+          use 'L3MON4D3/LuaSnip'
+          use 'saadparwaiz1/cmp_luasnip'
+--          use 'nvim-lua/completion-nvim'
           
           use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}} }
           

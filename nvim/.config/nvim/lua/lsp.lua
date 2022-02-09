@@ -1,11 +1,9 @@
-vim.cmd('packadd nvim-lspconfig')
-
 local mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
 end
 
 local custom_attach = function()
-  require'completion'.on_attach()
+--  require'completion'.on_attach()
   -- Move cursor to the next and previous diagnostic
   mapper('n', '<leader>dn', '<cmd>lua vim.lsp.diagnostic.goto_next()<cr>')
   mapper('n', '<leader>dp', '<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>')
@@ -37,7 +35,7 @@ lspconfig.gopls.setup{settings = {
 lspconfig.pyright.setup{on_attach=custom_attach}
 lspconfig.sumneko_lua.setup {
   on_attach=custom_attach,
-  cmd = {"~/lua-language-server/bin/Linux/lua-language-server", "-E", "~/lua-language-server/main.lua"};
+  cmd = {"/home/hristo.asenov/lua-language-server/bin/lua-language-server", "-E", "/home/hristo.asenov/lua-language-server/main.lua"};
 }
 lspconfig.rust_analyzer.setup{on_attach=custom_attach}
 lspconfig.vuels.setup{on_attach=custom_attach}
@@ -75,10 +73,6 @@ function MyLspRename()
 end
 
 -- Use <Tab> and <S-Tab> to navigate through popup menu
-vim.api.nvim_set_keymap('i', '<Tab>', [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {noremap = true, expr = true})
-vim.api.nvim_set_keymap('i', '<S-Tab>', [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]], {noremap = true, expr = true})
+--vim.api.nvim_set_keymap('i', '<Tab>', [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {noremap = true, expr = true})
+--vim.api.nvim_set_keymap('i', '<S-Tab>', [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]], {noremap = true, expr = true})
 
--- Set completeopt to have a better completion experience
-vim.api.nvim_command('set completeopt=menuone,noinsert,noselect')
--- Avoid showing message extra message when using completion
-vim.api.nvim_command('set shortmess+=c')
