@@ -30,6 +30,12 @@ bindkey -e
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
+# -----------------
+# Zim configuration
+# -----------------
+
+# Use degit instead of git as the default tool to install and update modules.
+#zstyle ':zim:zmodule' use 'degit'
 
 # --------------------
 # Module configuration
@@ -70,6 +76,10 @@ WORDCHARS=${WORDCHARS//[\/]}
 # zsh-autosuggestions
 #
 
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
 # Customize the style that the suggestions are shown with.
 # See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
@@ -91,8 +101,17 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # Initialize modules
 # ------------------
 
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  # Download zimfw script if missing.
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  else
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  fi
+fi
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  # Update static initialization script if it does not exist or it's outdated, before sourcing it
+  # Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
 source ${ZIM_HOME}/init.zsh
@@ -121,8 +140,6 @@ bindkey '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 # }}} End configuration added by Zim install
-
-#source /etc/profile
 
 # tmux
 alias tmux='tmux -2' # enable 256 colors
@@ -197,13 +214,6 @@ alias tr='tmux rename -t'
 alias ctgen='ctags -R *'
 
 alias refresh='source ~/.zshrc'
-
-# tab completion
-setopt menu_complete
-
-zmodload zsh/complist
-autoload -U compinit && compinit
-zstyle ':completion:*' menu select
 
 export GOPATH="$HOME/go" # Add GOPATH
 export PATH=$PATH:$HOME/bin:$HOME/nvim-build2/bin/:$GOPATH/bin
