@@ -216,6 +216,6 @@ alias ctgen='ctags -R *'
 alias refresh='source ~/.zshrc'
 
 export GOPATH="$HOME/go" # Add GOPATH
-export PATH=$PATH:$HOME/bin:$HOME/nvim-build2/bin/:$GOPATH/bin
+export PATH=$PATH:$HOME/bin:$HOME/nvim-build/bin/:$GOPATH/bin:/usr/local/go/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
