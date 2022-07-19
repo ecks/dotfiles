@@ -1,0 +1,14 @@
+;; -*-lisp-*-
+;;
+;; Here is a sample .stumpwmrc file
+
+(in-package :stumpwm)
+
+(setf *window-format* "%m%n%s%c")
+(setf *screen-mode-line-format* (list "[^B%n^b] %W^>%d"))
+(setf *time-modeline-string* "%a %b %e %k:%M")
+
+(enable-mode-line (current-screen) (current-head) t)
+
+(define-key *root-map* (kbd "RET") "exec alacritty")
+(define-key *root-map* (kbd "d") "exec dmenu_run")
