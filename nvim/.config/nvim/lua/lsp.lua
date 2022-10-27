@@ -32,7 +32,7 @@ lspconfig.gopls.setup{settings = {
                       cmd = { "gopls" },
                       filetypes = { "go", "gomod" },
                       root_dir = lspconfig.util.root_pattern("go.mod", ".git")}
-lspconfig.pyright.setup{on_attach=custom_attach}
+lspconfig.pylsp.setup{on_attach=custom_attach}
 lspconfig.sumneko_lua.setup {
   on_attach=custom_attach,
   cmd = {"/home/hristo.asenov/lua-language-server/bin/lua-language-server", "-E", "/home/hristo.asenov/lua-language-server/main.lua"};
