@@ -20,6 +20,7 @@ end
 
 local lspconfig = require'lspconfig'
 lspconfig.bashls.setup{on_attach=custom_attach}
+lspconfig.clangd.setup{on_attach=custom_attach}
 lspconfig.gopls.setup{settings = {
                         gopls = {
                           analyses = {
@@ -37,7 +38,9 @@ lspconfig.sumneko_lua.setup {
   on_attach=custom_attach,
   cmd = {"/home/hristo.asenov/lua-language-server/bin/lua-language-server", "-E", "/home/hristo.asenov/lua-language-server/main.lua"};
 }
+lspconfig.quick_lint_js.setup{on_attach=custom_attach}
 lspconfig.rust_analyzer.setup{on_attach=custom_attach}
+lspconfig.tsserver.setup{on_attach=custom_attach}
 lspconfig.vuels.setup{on_attach=custom_attach}
 lspconfig.yamlls.setup{
   on_attach=custom_attach,
@@ -71,8 +74,3 @@ function MyLspRename()
 
   vim.cmd [[startinsert]]
 end
-
--- Use <Tab> and <S-Tab> to navigate through popup menu
---vim.api.nvim_set_keymap('i', '<Tab>', [[ pumvisible() ? "\<C-n>" : "\<Tab>" ]], {noremap = true, expr = true})
---vim.api.nvim_set_keymap('i', '<S-Tab>', [[ pumvisible() ? "\<C-p>" : "\<S-Tab>" ]], {noremap = true, expr = true})
-

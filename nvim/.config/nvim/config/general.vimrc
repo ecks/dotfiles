@@ -4,9 +4,6 @@ set relativenumber
 set lazyredraw " redraw only when we need to. 
 set showmatch " highlight matching [{()}]
 
-" Turn Paste on and off
-nnoremap <Leader>p :set invpaste paste?<CR> set pastetoggle=<Leader>p set showmode
-
 " indentation -- http://vim.wikia.com/wiki/Indenting_source_code
 set expandtab " turns tabs into spaces
 set shiftwidth=2 " when using << or >> how many spaces will be shifted over

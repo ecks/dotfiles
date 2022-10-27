@@ -6,11 +6,6 @@ vim.g.mapleader=","
 vimp.nnoremap('<Leader>w', ':w<CR>')
 -- Reload
 vimp.nnoremap('<Leader>r', ':so $MYVIMRC<CR>')
--- buffer
-vimp.nnoremap('<Leader>b', ':ls<CR>:b<Space>')
-
--- turn paste on and off
-vimp.nnoremap('<Leader>p', ':set invpaste paste?<CR> set pastetoggle=<Leader>p set showmode')
 
 -- turn off search highlighting
 vimp.nnoremap('<Leader><space>', ':nohlsearch<CR>')
@@ -52,7 +47,7 @@ vimp.nnoremap('<Leader>nv', ':Vex<CR>')
 
 vimp.nnoremap('<Leader>ff', ':Telescope find_files<CR>')
 vimp.nnoremap('<Leader>fg', ':Telescope git_files<CR>')
-vimp.nnoremap('<Leader>fb', ':Telescope buffers<CR>')
+vimp.nnoremap('<Leader>b', ':Telescope buffers<CR>')
 vimp.nnoremap('<Leader>g', ':Telescope live_grep<CR>')
 
 --local actions = require "telescope.actions"
