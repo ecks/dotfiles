@@ -4,11 +4,22 @@
 
 (in-package :stumpwm)
 
+(load-module "battery-portable")
+
+(set-prefix-key (kbd "C-'"))
+
 (setf *window-format* "%m%n%s%c")
-(setf *screen-mode-line-format* (list "[^B%n^b] %W^>%d"))
+(setf *screen-mode-line-format* (list "[^B%n^b] %W^>%d" " ^7[^n%B^7]^n "))
 (setf *time-modeline-string* "%a %b %e %k:%M")
 
-(enable-mode-line (current-screen) (current-head) t)
+;; enable mode-line on multi-monitor -- https://lists.gnu.org/archive/html/stumpwm-devel/2008-05/msg00100.html
+(dolist (h (screen-heads (current-screen)))
+  (enable-mode-line (current-screen) h t))
 
+;; (define-key *top-map* (kbd "s-B") "mode-line")
 (define-key *root-map* (kbd "RET") "exec alacritty")
 (define-key *root-map* (kbd "d") "exec dmenu_run")
+(define-key *root-map* (kbd "'") "pull-hidden-other")
+(define-key *root-map* (kbd "C-'") "send-escape")
+(define-key *root-map* (kbd "w") "windowlist")
+(define-key *root-map* (kbd "W") "pull-from-windowlist")
